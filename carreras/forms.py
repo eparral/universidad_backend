@@ -74,3 +74,33 @@ class CarreraForm(forms.ModelForm):
             )
 
         return duracion
+
+    def clean_nombre(self):
+        nombre = self.cleaned_data['nombre'].strip()
+
+        if not nombre:
+            raise forms.ValidationError(
+                'El nombre de la carrera es obligatorio.'
+            )
+
+        return nombre
+
+    def clean_facultad(self):
+        facultad = self.cleaned_data['facultad'].strip()
+
+        if not facultad:
+            raise forms.ValidationError(
+                'La facultad es obligatoria.'
+            )
+
+        return facultad
+
+    def clean_codigo(self):
+        codigo = self.cleaned_data['codigo'].strip().upper()
+
+        if not codigo:
+            raise forms.ValidationError(
+                'El código de la carrera es obligatorio.'
+            )
+
+        return codigo

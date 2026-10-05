@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Carrera
 from .forms import CarreraForm
 
@@ -6,7 +7,7 @@ from .forms import CarreraForm
 def inicio(request):
     return render(request, 'carreras/inicio.html')
 
-
+@login_required
 def lista_carreras(request):
     carreras = Carrera.objects.all().order_by('nombre')
     return render(request, 'carreras/lista.html', {
@@ -14,6 +15,7 @@ def lista_carreras(request):
     })
 
 
+@login_required
 def crear_carrera(request):
     if request.method == 'POST':
         form = CarreraForm(request.POST)
@@ -28,7 +30,7 @@ def crear_carrera(request):
         'form': form
     })
 
-
+@login_required
 def editar_carrera(request, id):
     carrera = get_object_or_404(Carrera, id=id)
 
@@ -47,6 +49,7 @@ def editar_carrera(request, id):
     })
 
 
+@login_required
 def eliminar_carrera(request, id):
     carrera = get_object_or_404(Carrera, id=id)
 
