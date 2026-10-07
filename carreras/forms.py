@@ -33,7 +33,8 @@ class CarreraForm(forms.ModelForm):
             }),
             'duracion': forms.NumberInput(attrs={
                 'class': 'form-control',
-                'min': 1
+                'min': 1,
+                'max': 10
             }),
             'modalidad': forms.Select(attrs={
                 'class': 'form-select'
@@ -43,11 +44,13 @@ class CarreraForm(forms.ModelForm):
             }),
             'arancel': forms.NumberInput(attrs={
                 'class': 'form-control',
-                'min': 1
+                'min': 1,
+                'max': 1000000
             }),
             'cupos': forms.NumberInput(attrs={
                 'class': 'form-control',
-                'min': 0
+                'min': 0,
+                'max': 1000
             }),
             'correo': forms.EmailInput(attrs={
                 'class': 'form-control',
@@ -65,15 +68,24 @@ class CarreraForm(forms.ModelForm):
 
         return arancel
 
-    def clean_duracion(self):
-        duracion = self.cleaned_data['duracion']
-
-        if duracion <= 0:
+    def clean_arancel(self):
+        arancel = self.cleaned_data['arancel']
+        if arancel <= 0:
             raise forms.ValidationError(
-                'La duración debe ser mayor que 0.'
-            )
-
-        return duracion
+                 'El arancel debe ser mayor que 0.'
+        )
+        if arancel > 100000000:
+            raise forms.ValidationError(
+                 'El arancel no puede superar los $100.000.000.'
+        )
+        return arancel
+    def clean_cupos(self):
+        cupos = self.cleaned_data['cupos']
+        if cupos > 1000:
+             raise forms.ValidationError(
+                'Los cupos no pueden superar los 1.000.'
+        )
+        return cupos
 
     def clean_nombre(self):
         nombre = self.cleaned_data['nombre'].strip()
