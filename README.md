@@ -71,6 +71,17 @@ python manage.py test --settings=universidad.test_settings
 En un despliegue real, la API debe publicarse exclusivamente mediante HTTPS
 para proteger las credenciales y los tokens durante su transmisión.
 
+## Usuario inicial
+
+Al ejecutar `python manage.py migrate`, el proyecto crea un usuario inicial
+para desarrollo y demostración:
+
+- Usuario: `martin`
+- Contraseña: `123456`
+
+Esta contraseña es deliberadamente simple y debe cambiarse antes de publicar
+la aplicación en un entorno real.
+
 ## Datos de una carrera
 
 Cada carrera contiene:
