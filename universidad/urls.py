@@ -36,4 +36,5 @@ urlpatterns = [
     ),
 
     path('', include('carreras.urls')),
+    path('api/', include('carreras.api_urls')),
 ]
