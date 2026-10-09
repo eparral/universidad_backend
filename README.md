@@ -39,6 +39,21 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+Por defecto se utiliza SQLite para que el proyecto funcione inmediatamente.
+Para ejecutarlo con MariaDB de XAMPP en PowerShell, iniciar MySQL en XAMPP y
+definir estas variables antes de aplicar las migraciones:
+
+```powershell
+$env:DB_ENGINE = "mysql"
+$env:DB_NAME = "universidad_db"
+$env:DB_USER = "root"
+$env:DB_PASSWORD = ""
+$env:DB_HOST = "127.0.0.1"
+$env:DB_PORT = "3306"
+python manage.py migrate
+python manage.py runserver
+```
+
 Para obtener un token, enviar las credenciales de un usuario de Django:
 
 ```bash
