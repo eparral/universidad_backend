@@ -193,26 +193,9 @@
 
             </ul>
 
-            {% if user.is_authenticated %}
-
-                <span class="text-white me-3">
-                    👤 {{ user.username }}
-                </span>
-
-                <form method="POST"
-                      action="{% url 'logout' %}"
-                      class="d-inline">
-
-                    {% csrf_token %}
-
-                    <button type="submit"
-                            class="btn btn-light">
-                        Cerrar Sesión
-                    </button>
-
-                </form>
-
-            {% endif %}
+            <div class="d-flex align-items-center gap-2">
+                {% include 'carreras/auth_buttons.html' %}
+            </div>
 
         </div>
 

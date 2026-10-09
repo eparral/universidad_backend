@@ -70,6 +70,21 @@
 
                     </form>
 
+                    <div class="d-flex align-items-center my-3">
+                        <hr class="flex-grow-1">
+                        <span class="text-muted px-3">o</span>
+                        <hr class="flex-grow-1">
+                    </div>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="username" value="martin">
+                        <input type="hidden" name="password" value="123456">
+                        <button type="submit" class="btn btn-success w-100">
+                            ⚡ Entrar rápido como Martin
+                        </button>
+                    </form>
+
                 </div>
 
             </div>

@@ -50,3 +50,23 @@ class CarreraAPITests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]['codigo'], self.carrera.codigo)
+
+
+class LoginWebTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='martin-web',
+            password='123456',
+        )
+
+    def test_login_rapido_y_logout(self):
+        login = self.client.post(reverse('login'), {
+            'username': 'martin-web',
+            'password': '123456',
+        })
+
+        self.assertRedirects(login, reverse('inicio'))
+
+        logout = self.client.post(reverse('logout'))
+
+        self.assertRedirects(logout, reverse('login'))

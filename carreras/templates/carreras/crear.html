@@ -190,12 +190,13 @@
         </a>
 
 
-        <a href="{% url 'lista_carreras' %}"
-           class="btn btn-light">
-
-            📚 Ver Carreras
-
-        </a>
+        <div class="d-flex align-items-center gap-2">
+            <a href="{% url 'lista_carreras' %}"
+               class="btn btn-light btn-sm">
+                📚 Ver Carreras
+            </a>
+            {% include 'carreras/auth_buttons.html' %}
+        </div>
 
     </div>
 
